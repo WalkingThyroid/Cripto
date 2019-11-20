@@ -1,6 +1,7 @@
 # Cripto
 
 [Ines]
+
 peeps ai esta o codigo para algumas das funcionalidade do admin, gerar o certificado da CA, e gerar uma chave para o client bem como assinar a chave
 
 usage : admin 1/0 (1 para gerar o certificado da CA , 0 para nao gerar) user_id
