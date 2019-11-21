@@ -15,10 +15,8 @@ os votos com a encriptação homomorfica ainda nao estão feitos mas isso n deve
 
 aconselho-te a estraires tudo do ficheiro de dados e depois escrever para um ficheiro o voto e para outro a assinatura e aplicares o comando
 
-o formato é : user_id[:][espaço]Candidato1[espaço][votoencripitado]...Candidato10[espaço]Signature
-Candidato10[espaço][votoencriptado][espaço]assinatura
-*
+o formato é : user_id[:][espaço]Candidato1[espaço][votoencripitado]...Candidato10[espaço][votoencriptado][espaço]assinatura
+
 also, falta ai a time_stamp que ainda nao foi implementada
 
 ficaria após o user_id mas por agora n interessa mt
-
