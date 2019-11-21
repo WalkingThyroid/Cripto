@@ -23,7 +23,7 @@ using namespace std;
 
 
 char* encrypt_vote(int i, int vote,char* election_key);
-char* sign_vote(char* user_key,const char* filenameTemp);
+char* sign_vote(char* user_key,const char* filenameTemp, int* size);
 int check_cert(char* user_id, char* ca_certificate);
 string system_listen(string cmd);
 
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
  
 {
 
- int i, vote, new_ele;
+ int i, vote, new_ele, size;
  const char *filenameOut = "ballot_box.vt", *filenameTemp= "vote.temp", *cmd;
  char *ca_certificate, *user_certficate, *user_key, *cifer, *election_key, *signed_vote;
  char user_id[MAX_NAME_LENGTH];
@@ -113,9 +113,14 @@ int main(int argc, char *argv[])
 
   fprintf(fidTemp, "%s", raw_vote);
 
-  signed_vote = sign_vote(user_key, filenameTemp);
+  signed_vote = sign_vote(user_key, filenameTemp, &size);
 
-  fprintf(fidOut, "%s %s\n" ,raw_vote, signed_vote);
+  fprintf(fidOut, "%s " ,raw_vote);
+
+  for (i = 0; i<size ; i++)  fprintf(fidOut,"%c", signed_vote[i]);
+  
+
+  fprintf(fidOut, "\n");
 
   /* close files */
   if (fclose (fidTemp) != 0)
@@ -131,14 +136,14 @@ int main(int argc, char *argv[])
   /*consider disabling this for purposes of debugging*/
 
   /*cleaning up sginature file*/
-  text = "sudo rm *.sha256";
-  cmd = text.c_str();
-  system(cmd);
+  //text = "sudo rm *.sha256";
+  //cmd = text.c_str();
+  //system(cmd);
 
   /*cleaning up temporary files*/
-  text = "sudo rm *.temp";
-  cmd = text.c_str();
-  system(cmd);
+  //text = "sudo rm *.temp";
+  //cmd = text.c_str();
+  //system(cmd);
 
 
   exit(0);
@@ -165,7 +170,7 @@ char* encrypt_vote(int i, int vote, char* election_key)
  *
  *****************************************************************************/
 
-char* sign_vote(char* user_key,const char *filenameTemp)
+char* sign_vote(char* user_key,const char *filenameTemp, int* size)
 {
   const char* cmd, *sign;
   char *signature;
@@ -193,6 +198,7 @@ char* sign_vote(char* user_key,const char *filenameTemp)
 
   while(!feof(fid))       signature[i++] = fgetc(fid);
 
+  *size = i;
 
   /*closing file*/
   if (fclose(fid)!= 0)
