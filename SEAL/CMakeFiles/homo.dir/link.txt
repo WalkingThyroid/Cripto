@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/homo.dir/homo.cpp.o  -o homo /usr/local/lib/libseal-3.4.a -pthread /usr/lib/x86_64-linux-gnu/libz.so 

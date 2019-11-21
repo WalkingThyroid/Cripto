@@ -1,0 +1,3 @@
+/home/nes/Desktop/Tally_Vote/SEAL/CMakeFiles/rebuild_cache.dir
+/home/nes/Desktop/Tally_Vote/SEAL/CMakeFiles/homo.dir
+/home/nes/Desktop/Tally_Vote/SEAL/CMakeFiles/edit_cache.dir
